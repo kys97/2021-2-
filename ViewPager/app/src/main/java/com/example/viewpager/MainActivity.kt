@@ -11,11 +11,11 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(binding.root)
-		val fragmentList = listOf(FragmentA(), FragmentB(), FragmentC(), FragmentD())
+		val fragmentList = listOf(FragmentA(), FragmentB(), FragmentC())
 		val adapter = FragmentAdapter(this)
 		adapter.fragmentList = fragmentList
 		binding.viewPager.adapter = adapter
-		val tabTitles = listOf<String>("A", "B", "C", "D")
+		val tabTitles = listOf<String>("A", "B", "C")
 		TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
 			tab.text = tabTitles[position]
 		}.attach()
