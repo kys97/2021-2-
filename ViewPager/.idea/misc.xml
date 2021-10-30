@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/junoh/StudioProjects/2021-2-/ViewPager/app/src/main/res/layout/activity_check_main.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/junoh/StudioProjects/2021-2-/ViewPager/app/src/main/res/layout/activity_check_role.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/junoh/StudioProjects/2021-2-/ViewPager/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/junoh/StudioProjects/2021-2-/ViewPager/app/src/main/res/layout/fragment_a.xml" value="0.29264214046822745" />
+        <entry key="..\:/Users/junoh/StudioProjects/2021-2-/ViewPager/app/src/main/res/layout/fragment_b.xml" value="0.5541666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_a.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_b.xml" value="0.33" />

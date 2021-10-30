@@ -1,10 +1,17 @@
 package com.example.viewpager
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.viewpager.databinding.ActivityGoogleMapsBinding
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,16 +23,13 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FragmentA.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentA : Fragment() {
-	// TODO: Rename and change types of parameters
-	private var param1: String? = null
-	private var param2: String? = null
+class FragmentA : Fragment(), OnMapReadyCallback {
+	private lateinit var mView: MapView
+	private lateinit var binding: ActivityGoogleMapsBinding
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		arguments?.let {
-			param1 = it.getString(ARG_PARAM1)
-			param2 = it.getString(ARG_PARAM2)
 		}
 	}
 
@@ -34,7 +38,49 @@ class FragmentA : Fragment() {
 		savedInstanceState: Bundle?
 	): View? {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_a, container, false)
+		var rootView = inflater.inflate(R.layout.fragment_a, container, false)
+
+		mView = rootView.findViewById(R.id.mMap)
+		mView.onCreate(savedInstanceState)
+		mView.getMapAsync(this)
+		return rootView
+	}
+
+	override fun onMapReady(googleMap: GoogleMap) {
+		val seoul = LatLng(37.5, 127.0)
+		googleMap.addMarker(MarkerOptions().position(seoul).title("서울"))
+		googleMap.moveCamera(CameraUpdateFactory.newLatLng(seoul))
+		googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
+	}
+
+	override fun onStart() {
+		super.onStart()
+		mView.onStart()
+	}
+
+	override fun onStop() {
+		super.onStop()
+		mView.onStop()
+	}
+
+	override fun onResume() {
+		super.onResume()
+		mView.onResume()
+	}
+
+	override fun onPause() {
+		super.onPause()
+		mView.onPause()
+	}
+
+	override fun onLowMemory() {
+		super.onLowMemory()
+		mView.onLowMemory()
+	}
+
+	override fun onDestroy() {
+		super.onDestroy()
+		super.onDestroy()
 	}
 
 	companion object {
@@ -56,4 +102,5 @@ class FragmentA : Fragment() {
 				}
 			}
 	}
+
 }
