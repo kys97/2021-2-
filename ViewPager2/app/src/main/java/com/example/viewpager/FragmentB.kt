@@ -1,6 +1,7 @@
 package com.example.viewpager
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.provider.CallLog
 import android.util.Log
@@ -12,6 +13,8 @@ import android.widget.Toast
 import com.example.viewpager.databinding.FragmentBBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,10 +45,6 @@ class FragmentB : Fragment() {
 	): View? {
 		val binding = FragmentBBinding.inflate(inflater,container,false)
 
-		val callLogUri = CallLog.Calls.CONTENT_URI
-
-		var proj = arrayOf(CallLog.Calls.NUMBER, CallLog.Calls.TYPE, CallLog.Calls.DATE)
-
 		/*context?.run{
 			val cursor = contentResolver.query(callLogUri, proj, null, null, null)
 			while(cursor?.moveToNext()==true){
@@ -62,22 +61,79 @@ class FragmentB : Fragment() {
 
 
 
+
+
 		binding.wd.setOnClickListener {
 			Log.d("check", "이거")
 			Toast.makeText(context, "출력", Toast.LENGTH_SHORT).show()
+			val callLogUri = CallLog.Calls.CONTENT_URI
+			var proj = arrayOf(CallLog.Calls.NUMBER, CallLog.Calls.TYPE, CallLog.Calls.DATE)
+			context?.run {
+				val cursor = contentResolver.query(callLogUri, proj, null, null, null)
 
-			val db = Firebase.firestore
-			val city = hashMapOf(
-				"name" to "LlA",
-				"state" to "ClA",
-				"country" to "UlSA"
+				val data = mutableListOf<Memo>()
+				val db = Firebase.firestore
+				while (cursor?.moveToNext() == true) {
+					var index = cursor.getColumnIndex((proj[0]))
+					val number = cursor.getString(index)
+					index = cursor.getColumnIndex((proj[1]))
+					val type = cursor.getInt(index)// 1: 수신, 2:발신, 3:부재중
+					var typeKo:String = "수신"
+					if (type == 1){
+						typeKo = "수신"
+					}
+					else if (type ==2)
+						typeKo ="발신"
+					else if (type ==3)
+						typeKo ="부재중"
 
-			)
-			db.collection("cities").document("LA")
-				.set(city)
-				.addOnSuccessListener { Log.d(ContentValues.TAG,"documentSnapshot") }
-				.addOnFailureListener{e -> Log.w(ContentValues.TAG, "Error",e)}
+					index = cursor.getColumnIndex((proj[2]))
+					val date = cursor.getLong(index)
+					val formatter = SimpleDateFormat("yy-MM-dd HH:mm")
+					val dateString = formatter.format(Date(date))
+					Log.d("CallLog", "${number}")
+					Log.d("CallLog", "${type}")
+					Log.d("CallLog", "${typeKo}")
+					Log.d("CallLog", "${dateString}")
+					val call = Memo(number,typeKo,dateString)
+					val map = hashMapOf("number" to number, "type" to typeKo, "date" to dateString)
+					db.collection("patient")
+						.add(map)
+						.addOnSuccessListener { documentReference ->
+							Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+						}
+						.addOnFailureListener { e ->
+							Log.w(TAG, "Error adding document", e)
+						}
+
+					data.add(call)
+				}
+
+
+
+
+
+			}
+
+
+
+
+
+			/*	val db = Firebase.firestore
+                val city = hashMapOf(
+                    "name" to "LlA",
+                    "state" to "ClA",
+                    "country" to "UlSA"
+
+                )
+                db.collection("cities").document("LA")
+                    .set(city)
+                    .addOnSuccessListener { Log.d(ContentValues.TAG,"documentSnapshot") }
+                    .addOnFailureListener{e -> Log.w(ContentValues.TAG, "Error",e)}
+            */
+
 		}
+
 		return binding.root
 	}
 

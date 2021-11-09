@@ -66,9 +66,9 @@ class FragmentC : Fragment() {
 				for (document in result) {
 					Log.d("good", "잘하구이써")
 					Log.d(TAG, "${document.id} => ${document.data}")
-					val name = document.data.get("name")as String
-					val phoneNumber = document.data.get("phoneNumber")as String
-					val date = document.data.get("timestamp") as String
+					val name = document.data.get("type")as String
+					val phoneNumber = document.data.get("number")as String
+					val date = document.data.get("date") as String
 					Log.d("get good", "${name}")
 					Log.d("get good", "${phoneNumber}")
 					Log.d("get good", "${date}")
@@ -79,10 +79,10 @@ class FragmentC : Fragment() {
 				}
 			}
 		Log.d("data good", "${data}")
-
+		data.sortedBy{it.timestamp}
 		//val data:MutableList<Memo> = loadData()
 
-		adapter.listData =data
+		adapter.listData = data
 
 		binding.recyclerView.adapter = adapter
 
