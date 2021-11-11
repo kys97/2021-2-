@@ -1,10 +1,13 @@
 package com.example.viewpager
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.viewpager.databinding.ActivityGoogleMapsBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -12,6 +15,9 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlin.properties.Delegates
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,10 +54,24 @@ class FragmentA : Fragment(), OnMapReadyCallback {
 	}
 
 	override fun onMapReady(googleMap: GoogleMap) {
-		val seoul = LatLng(37.5, 127.0)
-		googleMap.addMarker(MarkerOptions().position(seoul).title("서울"))
-		googleMap.moveCamera(CameraUpdateFactory.newLatLng(seoul))
-		googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
+		val db = Firebase.firestore
+		var lat = 37.4 as Double
+		var long = 126.0 as Double
+		val patientName: String = "user1"
+		db.collection("Location").document(patientName)
+			.get()
+			.addOnSuccessListener {
+				val latString = it.data?.get("위도") as String
+				val longString = it.data?.get("경도") as String
+				lat = latString.toDouble()
+				long = longString.toDouble()
+				Log.d("get good", "${lat}")
+				Log.d("get good", "${long}")
+				val patientLoc = LatLng(lat, long)
+				googleMap.addMarker(MarkerOptions().position(patientLoc).title(patientName))
+				googleMap.moveCamera(CameraUpdateFactory.newLatLng(patientLoc))
+				googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
+			}
 	}
 
 	override fun onStart() {
