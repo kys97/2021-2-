@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Dark_Green">#425518</color>
+    <color name="Brown">#865F00</color>
+    <color name="Green">#8A9D60</color>
+    <color name="Dark_Brown">#724C00</color>
+    <color name="Dark_Green_Night">#5A7B2F</color>
+    <color name="Dart_Brown_Night">#AE7600</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
