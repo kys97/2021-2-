@@ -1,17 +1,31 @@
 package com.example.viewpager
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.location.Location
+import android.location.LocationManager
+import android.location.LocationRequest
 import android.os.Bundle
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.viewpager.databinding.ActivityGoogleMapsBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import java.util.jar.Manifest
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +40,8 @@ private const val ARG_PARAM2 = "param2"
 class FragmentA : Fragment(), OnMapReadyCallback {
 	private lateinit var mView: MapView
 	private lateinit var binding: ActivityGoogleMapsBinding
+	private lateinit var fusedLocationClient: FusedLocationProviderClient
+	private lateinit var locationCallback: LocationCallback
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -46,8 +62,31 @@ class FragmentA : Fragment(), OnMapReadyCallback {
 		return rootView
 	}
 
+	@SuppressLint("MissingPermission")
+	fun updateLocation() {
+		val locationRequest = LocationRequest.create()
+		locationRequest.run {
+			priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+			interval = 1000
+		}
+
+		locationCallback = object: LocationCallback() {
+			override fun onLocationResult(locationResult: LocationResult?) {
+				locationResult?.let {
+					for ((i, location) in it.locations.withIndex()) {
+						Log.d("Location", "$i ${location.latitude}, ${location.longitude}")
+						setLastLocation(location)
+					}
+				}
+			}
+		}
+		fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper())
+	}
+
 	override fun onMapReady(googleMap: GoogleMap) {
-		val seoul = LatLng(37.5, 127.0)
+		mMap = googleMap
+		fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+		updateLocation()
 		googleMap.addMarker(MarkerOptions().position(seoul).title("서울"))
 		googleMap.moveCamera(CameraUpdateFactory.newLatLng(seoul))
 		googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
