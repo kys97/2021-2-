@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "699897990818",
+    "project_id": "chime-5e00e",
+    "storage_bucket": "chime-5e00e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699897990818:android:1c44350f428f24e445d1fb",
+        "android_client_info": {
+          "package_name": "com.example.viewpager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699897990818-g2jeotb9nkgchq74kpmm82fnpuk815ga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqRQkvVOZw2Yt4y7ept0LQZsjAIGqYcCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699897990818-g2jeotb9nkgchq74kpmm82fnpuk815ga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
