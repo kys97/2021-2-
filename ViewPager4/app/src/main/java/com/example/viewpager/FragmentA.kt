@@ -5,8 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.viewpager.databinding.ActivityGoogleMapsBinding
+import com.example.viewpager.databinding.FragmentABinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -28,7 +34,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class FragmentA : Fragment(), OnMapReadyCallback {
 	private lateinit var mView: MapView
-	private lateinit var binding: ActivityGoogleMapsBinding
+	private lateinit var binding: FragmentABinding
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -36,18 +42,41 @@ class FragmentA : Fragment(), OnMapReadyCallback {
 		}
 	}
 
+	fun refreshFragment(fragment: Fragment, fragmentManager: FragmentManager) {
+		var ft: FragmentTransaction = fragmentManager.beginTransaction()
+		ft.detach(fragment).attach(fragment).commit()
+	}
+
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
-
 		// Inflate the layout for this fragment
-		var rootView = inflater.inflate(R.layout.fragment_a, container, false)
+		binding = FragmentABinding.inflate(inflater, container, false)
 
-		mView = rootView.findViewById(R.id.mMap)
+		mView = binding.mMap
 		mView.onCreate(savedInstanceState)
 		mView.getMapAsync(this)
-		return rootView
+		binding.myLocation.setOnClickListener {
+			mView.getMapAsync(this)
+		}
+		return binding.root
+	}
+
+	var lat_bind = 37.5 as Double
+	var long_bind = 126.95 as Double
+	var latBound_bind = 0.01 as Double
+	var longBound_bind = 0.01 as Double
+	fun setBind(lat: Double, long: Double, latBound: Double, longBound: Double) {
+		lat_bind = lat
+		long_bind = long
+		latBound_bind = latBound
+		longBound_bind = longBound
+	}
+
+	fun isInBind(lat: Double, long: Double): Boolean {
+		return ((lat_bind - latBound_bind <= lat && lat <= lat_bind + latBound_bind) ||
+				(long_bind - longBound_bind <= long && long <= long_bind + longBound_bind))
 	}
 
 	override fun onMapReady(googleMap: GoogleMap) {
@@ -62,6 +91,12 @@ class FragmentA : Fragment(), OnMapReadyCallback {
 				val longString = it.data?.get("경도") as String
 				lat = latString.toDouble()
 				long = longString.toDouble()
+				if (!isInBind(lat, long)) {
+					Log.d("Out Bound", "${lat}, ${long}")
+					Toast.makeText(binding.root.context, "환자가 범위 바깥으로 이동했습니다.", Toast.LENGTH_LONG).show()
+				} else {
+					Log.d("In Bound", "${lat}, ${long}")
+				}
 				Log.d("get good", "${lat}")
 				Log.d("get good", "${long}")
 				val patientLoc = LatLng(lat, long)
