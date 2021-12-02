@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/demo/ViewPager4 (1)/app/src/main/res/layout/activity_patient.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/demo/ViewPager4 (1)/app/src/main/res/layout/add_patient.xml" value="0.33" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/demo/ViewPager4 (1)/app/src/main/res/layout/fragment_b.xml" value="0.25" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/demo/ViewPager4 (1)/app/src/main/res/layout/protector_list.xml" value="0.33" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/activity_check_role.xml" value="0.2046875" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/activity_google_maps.xml" value="0.2046875" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/activity_main.xml" value="0.2046875" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/activity_patient.xml" value="0.26766304347826086" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/activity_protectorlist_item.xml" value="0.33" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/add_patient.xml" value="0.1778115501519757" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/add_protector.xml" value="0.20516304347826086" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/add_protector_code.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/fragment_b.xml" value="0.27355072463768115" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/item_recycler.xml" value="0.1" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/join.xml" value="0.26766304347826086" />
+        <entry key="..\:/Users/User/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/protector_list.xml" value="0.1" />
+        <entry key="..\:/Users/junoh/StudioProjects/2021-2-/Final/app/src/main/res/layout/activity_patient.xml" value="0.32395833333333335" />
+        <entry key="..\:/Users/junoh/StudioProjects/2021-2-/Final/app/src/main/res/layout/boundary_dialog.xml" value="0.4447463768115942" />
+        <entry key="..\:/Users/junoh/StudioProjects/2021-2-/Final/app/src/main/res/layout/fragment_a.xml" value="0.4447463768115942" />
+        <entry key="..\:/Users/junoh/StudioProjects/2021-2-/Final/app/src/main/res/layout/fragment_b.xml" value="0.32395833333333335" />
+        <entry key="..\:/Users/lolla/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/add_patient.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/lolla/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/add_protector.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/lolla/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/add_protector_code.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/lolla/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/fragment_b.xml" value="0.1296875" />
+        <entry key="..\:/Users/lolla/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/join.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/lolla/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/protector_dialog.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/lolla/Documents/GitHub/myGit/ViewPager4 (1)/app/src/main/res/layout/protector_list.xml" value="0.12335359675785208" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/Final/app/src/main/res/layout/activity_check_role.xml" value="0.1" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/Final/app/src/main/res/layout/activity_patient.xml" value="0.1" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/Final/app/src/main/res/layout/activity_protectorlist_item.xml" value="0.13125" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/Final/app/src/main/res/layout/add_protector.xml" value="0.13125" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/ViewPager4/app/src/main/res/layout/activity_google_maps.xml" value="0.1697061803444782" />
+        <entry key="..\:/Users/pc/AndroidStudioProjects/ViewPager4/app/src/main/res/layout/activity_patient.xml" value="0.1697061803444782" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
